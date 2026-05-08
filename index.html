@@ -256,8 +256,9 @@
     const resultText = document.getElementById("resultText");
 
     const levels = [
-      { label: "簡易", need: 1, ghosts: 2, ghostSpeed: 2.0 },
-      { label: "中等", need: 3, ghosts: 3, ghostSpeed: 2.35 },
+      // 三關差異只保留「細菌數量」與「移動速度」：移動範圍與巡邏邏輯三關都一樣大。
+      { label: "簡易", need: 1, ghosts: 2, ghostSpeed: 2.05 },
+      { label: "中等", need: 3, ghosts: 3, ghostSpeed: 2.38 },
       { label: "困難", need: 5, ghosts: 4, ghostSpeed: 2.7 }
     ];
 
@@ -376,7 +377,18 @@
       state.powerGot = 0;
       state.ghosts = [];
       const centers = [nearestOpen(9, 9), nearestOpen(11, 9), nearestOpen(9, 11), nearestOpen(11, 11)];
-      const patrolTargets = [nearestOpen(17, 1), nearestOpen(1, 17), nearestOpen(17, 17), nearestOpen(3, 3), nearestOpen(15, 15), nearestOpen(5, 13)];
+      // 每一關都使用同一組「大範圍巡邏目標」，差別只在細菌數量與速度。
+      // 這些點分散在迷宮四角與遠端通道，避免第一、二關只在中央小範圍移動。
+      const patrolTargets = [
+        nearestOpen(17, 1),
+        nearestOpen(1, 17),
+        nearestOpen(17, 17),
+        nearestOpen(3, 3),
+        nearestOpen(15, 15),
+        nearestOpen(5, 13),
+        nearestOpen(13, 5),
+        nearestOpen(7, 17)
+      ];
       const setting = levels[state.level - 1];
       for (let i = 0; i < setting.ghosts; i++) {
         const c = centers[i];
@@ -387,7 +399,8 @@
           speed: setting.ghostSpeed,
           type: i,
           target: patrolTargets[i % patrolTargets.length],
-          scatterTimer: 0
+          scatterTimer: 1.5 + i * 0.7,
+          targetIndex: i % patrolTargets.length
         });
       }
       buildDots();
@@ -432,19 +445,28 @@
       return candidates[Math.floor(Math.random() * candidates.length)] || nearestOpen(10, 9);
     }
 
+    function nextPatrolTarget(g) {
+      const patrolTargets = [
+        nearestOpen(17, 1), nearestOpen(1, 17), nearestOpen(17, 17), nearestOpen(3, 3),
+        nearestOpen(15, 15), nearestOpen(5, 13), nearestOpen(13, 5), nearestOpen(7, 17)
+      ];
+      g.targetIndex = ((g.targetIndex || 0) + 1 + g.type) % patrolTargets.length;
+      return patrolTargets[g.targetIndex];
+    }
+
     function chooseGhostDir(g) {
       let possible = ALL_DIRS.filter(d => canMove(g, d));
       const reverse = { x: -g.dir.x, y: -g.dir.y };
       if (possible.length > 1) possible = possible.filter(d => !(d.x === reverse.x && d.y === reverse.y));
 
       const gc = cellOf(g);
-      const currentTarget = g.target || randomFarTarget(gc);
+      const currentTarget = g.target || nextPatrolTarget(g);
       const reachedTarget = Math.abs(gc.c - currentTarget.c) + Math.abs(gc.r - currentTarget.r) <= 1;
-      if (reachedTarget || Math.random() < 0.08) g.target = randomFarTarget(gc);
+      if (reachedTarget) g.target = nextPatrolTarget(g);
 
-      // 讓細菌以「巡邏到遠方目標」為主，偶爾才追小勇者，移動範圍會比原本大很多。
+      // 三關都採用大範圍巡邏：主要往遠方巡邏點移動，偶爾才追小勇者。
       let target = g.target;
-      if (Math.random() < 0.22) target = cellOf(state.player);
+      if (Math.random() < 0.16) target = cellOf(state.player);
 
       possible.sort((a, b) => {
         const da = Math.abs(target.c - (gc.c + a.x)) + Math.abs(target.r - (gc.r + a.y));
@@ -460,9 +482,21 @@
 
     function moveGhosts(dt) {
       for (const g of state.ghosts) {
-        if (atCenter(g)) { snap(g); g.dir = chooseGhostDir(g); }
+        g.scatterTimer -= dt;
+        if (g.scatterTimer <= 0) {
+          // 定期指定下一個遠方巡邏點，讓第一、二關也會跑遍迷宮。
+          g.target = nextPatrolTarget(g);
+          g.scatterTimer = 4.5 + Math.random() * 2.5;
+        }
+        if (atCenter(g)) {
+          snap(g);
+          g.dir = chooseGhostDir(g);
+        }
         moveEntity(g, dt);
-        if (g.dir.x === 0 && g.dir.y === 0) g.dir = chooseGhostDir(g);
+        if (g.dir.x === 0 && g.dir.y === 0) {
+          g.target = nextPatrolTarget(g);
+          g.dir = chooseGhostDir(g);
+        }
       }
     }
 
