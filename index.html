@@ -184,17 +184,37 @@
   <script>
     const questionBank = [
       { level: 1, topic: "均衡飲食", q: "「我的餐盤」把每日飲食分成幾大類食物？", options: ["3大類", "4大類", "6大類", "8大類"], answer: 2, explain: "臺灣版「我的餐盤」包含全穀雜糧、豆魚蛋肉、乳品、蔬菜、水果、油脂與堅果種子等6大類，重點是多樣且均衡。" },
+      { level: 1, topic: "我的餐盤", q: "依照「我的餐盤」口訣，下列哪一項最接近建議？", options: ["每天早晚一杯奶", "每餐只吃肉", "完全不吃水果", "把含糖飲料當水喝"], answer: 0, explain: "「我的餐盤」強調每天早晚一杯奶、每餐水果拳頭大、菜比水果多一點、飯跟蔬菜一樣多等概念。" },
       { level: 1, topic: "身體活動", q: "成人健康管理常見建議是每週累積多少中等強度身體活動？", options: ["30分鐘", "60分鐘", "150分鐘", "600分鐘"], answer: 2, explain: "成人可從每週累積150分鐘中等強度活動開始，例如快走、騎腳踏車等。" },
+      { level: 1, topic: "運動強度", q: "哪一種描述比較符合中等強度運動？", options: ["完全不喘，可以唱歌", "還能說話，但不容易唱歌", "完全不能說話", "坐著滑手機"], answer: 1, explain: "中等強度運動通常會讓心跳和呼吸變快，還能說話，但不太能唱歌。" },
       { level: 1, topic: "手部衛生", q: "預防腸病毒最重要的日常方法之一是什麼？", options: ["只用香水噴手", "用肥皂或洗手乳正確洗手", "吃很多甜食", "只在生病後才洗手"], answer: 1, explain: "腸病毒傳染力強，返家、進食前、如廁後都應落實正確洗手。" },
+      { level: 1, topic: "洗手時機", q: "下列哪一個時機特別需要洗手？", options: ["吃東西前", "剛洗完手立刻再洗", "睡覺時", "看電視時每分鐘洗一次"], answer: 0, explain: "用餐前、如廁後、外出返家後、接觸分泌物後，都是重要的洗手時機。" },
       { level: 1, topic: "口腔健康", q: "下列哪一個行為會增加口腔癌風險？", options: ["規律刷牙", "嚼檳榔", "多喝白開水", "使用牙線"], answer: 1, explain: "檳榔本身就是一級致癌物，嚼檳榔會增加口腔癌風險。" },
+      { level: 1, topic: "飲水習慣", q: "下列哪一種飲品最適合作為日常主要補充水分來源？", options: ["白開水", "含糖手搖飲", "能量飲料", "高糖汽水"], answer: 0, explain: "日常補水以白開水為主較健康，含糖飲料容易增加糖分與熱量攝取。" },
+      { level: 1, topic: "睡眠健康", q: "維持良好睡眠較適合的做法是什麼？", options: ["每天睡前大量喝咖啡", "固定作息並減少睡前滑手機", "連續熬夜補進度", "睡前劇烈爭吵"], answer: 1, explain: "固定作息、睡前放鬆、減少螢幕刺激，有助於維持睡眠品質。" },
+      { level: 1, topic: "心理健康", q: "當感到壓力時，下列哪一種做法較健康？", options: ["長期忽略壓力", "規律作息並找可信任的人談談", "完全不睡覺", "只靠熬夜打電動紓壓"], answer: 1, explain: "心理健康可從規律作息、適度活動、情緒覺察與尋求支持開始。" },
+      { level: 1, topic: "飲食衛生", q: "用餐及喝水前，較好的衛生習慣是什麼？", options: ["不用洗手", "用乾淨流動水和肥皂洗手", "只擦衣服", "只沖一下手背"], answer: 1, explain: "用餐與喝水前應落實正確洗手，能降低經由手部接觸造成感染的風險。" },
+      { level: 1, topic: "蔬果攝取", q: "下列哪一項比較符合健康飲食概念？", options: ["蔬菜和水果都要攝取", "只吃零食不吃正餐", "完全不吃蔬菜", "水果可以完全取代蔬菜"], answer: 0, explain: "蔬菜和水果提供不同營養素，健康飲食強調多樣化攝取。" },
+      { level: 2, topic: "健康體位", q: "若想控制體重，最完整的做法通常是什麼？", options: ["只靠單次大量運動", "完全不吃主食", "規律身體活動並搭配健康飲食", "只喝含糖飲料補充體力"], answer: 2, explain: "健康體位管理需要搭配均衡飲食、規律活動與良好生活習慣。" },
       { level: 2, topic: "腸病毒", q: "關於腸病毒環境消毒，下列哪一項較正確？", options: ["酒精對腸病毒效果有限", "只要開冷氣就能殺死病毒", "灰塵越多越安全", "完全不用清潔玩具"], answer: 0, explain: "酒精對腸病毒效果有限，幼兒常接觸物品應定期清潔消毒。" },
-      { level: 2, topic: "登革熱", q: "預防登革熱最重要的環境行動之一是什麼？", options: ["清除積水容器", "把水桶裝滿水放著", "只在室內點香", "完全不處理花盆底盤"], answer: 0, explain: "登革熱防治重點是清除積水容器，降低病媒蚊孳生機會。" },
+      { level: 2, topic: "登革熱", q: "預防登革熱最重要的環境行動之一是什麼？", options: ["清除積水容器", "把水桶裝滿水放著", "只在室內點香", "完全不處理花盆底盤"], answer: 0, explain: "登革熱防治重點是巡、倒、清、刷，清除積水容器，降低病媒蚊孳生機會。" },
+      { level: 2, topic: "防蚊行動", q: "住家附近若有不用的空瓶、空罐，較好的做法是什麼？", options: ["任其積水", "倒掉積水並清除容器", "放更多水養蚊子", "只用紙蓋住"], answer: 1, explain: "容器積水容易成為病媒蚊孳生處，應定期清除積水與不用容器。" },
       { level: 2, topic: "心理健康", q: "下列哪一項比較能幫助維持心理健康？", options: ["長期封閉自己", "保持規律生活、適度活動與社會支持", "每天熬夜到很晚", "遇到壓力只責怪自己"], answer: 1, explain: "規律作息、適度活動、與人連結和必要時求助，都是重要保護因子。" },
       { level: 2, topic: "飲食", q: "下列哪一種飲食選擇較符合健康飲食原則？", options: ["蔬果多樣化，選擇全穀", "每天只吃油炸食物", "完全不吃蔬菜", "用含糖飲料代替水"], answer: 0, explain: "健康飲食可從多樣蔬果、全穀未精製雜糧、優質蛋白質、減少高油高鹽高糖開始。" },
+      { level: 2, topic: "菸害防制", q: "關於吸菸，下列哪一項較正確？", options: ["吸菸只影響牙齒顏色", "吸菸會增加多種疾病風險", "少量吸菸完全無風險", "吸菸可以提升肺功能"], answer: 1, explain: "吸菸會危害呼吸系統、心血管系統，也與多種癌症風險有關。" },
+      { level: 2, topic: "口腔癌警訊", q: "若口腔出現長期不癒合的破皮、硬塊或異常斑塊，較適合怎麼做？", options: ["忽略它", "自己亂刮掉", "盡快就醫檢查", "只喝冰水"], answer: 2, explain: "口腔若出現長期不癒合破皮、斑塊或硬塊，應儘快就醫檢查。" },
+      { level: 2, topic: "用藥安全", q: "服用藥物時，下列哪一項較安全？", options: ["自行加倍劑量", "依照醫囑或藥袋指示使用", "吃別人的藥", "把多種藥混在一起不確認"], answer: 1, explain: "用藥應遵照醫囑或藥袋指示，不應任意加量、停藥或服用他人藥物。" },
+      { level: 2, topic: "食品標示", q: "購買包裝食品時，哪一項資訊值得注意？", options: ["有效日期與營養標示", "包裝越亮越健康", "只看廣告詞", "完全不用看標示"], answer: 0, explain: "有效日期、保存方式、成分與營養標示，有助於做出較健康與安全的選擇。" },
+      { level: 2, topic: "視力保健", q: "長時間近距離用眼時，較好的做法是什麼？", options: ["一直盯著螢幕不休息", "適度休息並增加戶外活動", "在很暗的地方看書", "越近看越清楚"], answer: 1, explain: "規律休息、保持適當距離與增加戶外活動，有助於視力保健。" },
       { level: 3, topic: "健康資訊辨識", q: "看到網路健康偏方時，最適合的做法是什麼？", options: ["馬上照做並轉傳", "只看標題就相信", "查證來源，優先參考政府或專業醫療機構資訊", "越誇張越可信"], answer: 2, explain: "健康資訊應查證來源與證據，優先參考政府衛生單位、醫療院所或專業健康資訊。" },
       { level: 3, topic: "運動", q: "若一次無法運動30分鐘，較可行的方式是什麼？", options: ["完全放棄運動", "分次累積，例如每次10分鐘以上", "只在月底一次運動很久", "只看運動影片不動"], answer: 1, explain: "若一次無法達到30分鐘，可分次累積身體活動，重點是規律且總量達標。" },
       { level: 3, topic: "檳榔迷思", q: "關於檳榔，下列哪一項正確？", options: ["沒有加紅白灰就完全不會致癌", "吐掉檳榔汁就沒有風險", "檳榔本身就是一級致癌物", "嚼檳榔可以保護牙齦"], answer: 2, explain: "檳榔本身就是一級致癌物，不論有無添加物都可能增加口腔癌風險。" },
-      { level: 3, topic: "飲食衛生", q: "外食時，下列哪一項較能降低飲食衛生風險？", options: ["選擇注重衛生的店家並落實洗手", "吃飯前不用洗手", "共飲共食不使用公筷母匙", "生水看起來乾淨就直接喝"], answer: 0, explain: "外食可選擇注重衛生的店家，並在用餐前洗手，降低感染風險。" }
+      { level: 3, topic: "飲食衛生", q: "外食時，下列哪一項較能降低飲食衛生風險？", options: ["選擇注重衛生的店家並落實洗手", "吃飯前不用洗手", "共飲共食不使用公筷母匙", "生水看起來乾淨就直接喝"], answer: 0, explain: "外食可選擇注重衛生的店家，並在用餐前洗手，降低感染風險。" },
+      { level: 3, topic: "慢性病預防", q: "預防慢性病較重要的生活方式包含哪一項？", options: ["規律活動、均衡飲食、定期健康檢查", "每天暴飲暴食", "完全不活動", "只靠保健食品"], answer: 0, explain: "慢性病預防重視長期生活型態，包含健康飲食、規律活動、體重管理與定期檢查。" },
+      { level: 3, topic: "疫苗觀念", q: "關於疫苗，下列哪一項較正確？", options: ["所有疫苗都完全不需評估", "疫苗接種可降低特定疾病重症風險", "打疫苗一定會得到該疾病", "疫苗都沒有任何作用"], answer: 1, explain: "疫苗接種可協助身體建立保護力，降低特定疾病感染、重症或併發症風險。" },
+      { level: 3, topic: "熱傷害預防", q: "炎熱天氣進行戶外活動時，哪一項較能預防熱傷害？", options: ["補充水分並避免長時間曝曬", "完全不喝水", "穿厚重不透氣衣物", "只喝高糖飲料"], answer: 0, explain: "高溫環境應補充水分、適度休息、注意遮陽與通風，降低熱傷害風險。" },
+      { level: 3, topic: "壓力調適", q: "面對長期壓力時，下列哪一項比較適合？", options: ["覺察壓力來源並尋求支持", "完全否認壓力", "只靠熬夜硬撐", "把所有問題都怪自己"], answer: 0, explain: "壓力調適可從覺察壓力來源、規劃可行行動、放鬆練習與尋求支持開始。" },
+      { level: 3, topic: "癌症篩檢", q: "關於癌症篩檢，下列哪一項較正確？", options: ["符合條件者可依建議定期篩檢", "沒有症狀就永遠不用管", "篩檢可以取代所有治療", "篩檢結果不用看"], answer: 0, explain: "符合條件者可依建議定期篩檢，早期發現有助於後續處理與治療。" }
     ];
 
     const maze = [
@@ -253,6 +273,7 @@
       dots: new Set(),
       powers: [],
       usedQuestions: new Set(),
+      recentQuestions: JSON.parse(localStorage.getItem("healthMazeRecentQuestions") || "[]"),
       currentQuestion: null,
       lastAnswerCorrect: false,
       player: null,
@@ -355,10 +376,19 @@
       state.powerGot = 0;
       state.ghosts = [];
       const centers = [nearestOpen(9, 9), nearestOpen(11, 9), nearestOpen(9, 11), nearestOpen(11, 11)];
+      const patrolTargets = [nearestOpen(17, 1), nearestOpen(1, 17), nearestOpen(17, 17), nearestOpen(3, 3), nearestOpen(15, 15), nearestOpen(5, 13)];
       const setting = levels[state.level - 1];
       for (let i = 0; i < setting.ghosts; i++) {
         const c = centers[i];
-        state.ghosts.push({ x: c.c + 0.5, y: c.r + 0.5, dir: ALL_DIRS[i], speed: setting.ghostSpeed, type: i });
+        state.ghosts.push({
+          x: c.c + 0.5,
+          y: c.r + 0.5,
+          dir: ALL_DIRS[i],
+          speed: setting.ghostSpeed,
+          type: i,
+          target: patrolTargets[i % patrolTargets.length],
+          scatterTimer: 0
+        });
       }
       buildDots();
       placePowers();
@@ -397,18 +427,33 @@
       }
     }
 
+    function randomFarTarget(fromCell) {
+      const candidates = openCells().filter(cell => Math.abs(cell.c - fromCell.c) + Math.abs(cell.r - fromCell.r) >= 10);
+      return candidates[Math.floor(Math.random() * candidates.length)] || nearestOpen(10, 9);
+    }
+
     function chooseGhostDir(g) {
       let possible = ALL_DIRS.filter(d => canMove(g, d));
       const reverse = { x: -g.dir.x, y: -g.dir.y };
       if (possible.length > 1) possible = possible.filter(d => !(d.x === reverse.x && d.y === reverse.y));
-      const pc = cellOf(state.player);
+
       const gc = cellOf(g);
-      if (Math.random() < 0.55) {
-        possible.sort((a, b) => {
-          const da = Math.abs(pc.c - (gc.c + a.x)) + Math.abs(pc.r - (gc.r + a.y));
-          const db = Math.abs(pc.c - (gc.c + b.x)) + Math.abs(pc.r - (gc.r + b.y));
-          return da - db;
-        });
+      const currentTarget = g.target || randomFarTarget(gc);
+      const reachedTarget = Math.abs(gc.c - currentTarget.c) + Math.abs(gc.r - currentTarget.r) <= 1;
+      if (reachedTarget || Math.random() < 0.08) g.target = randomFarTarget(gc);
+
+      // 讓細菌以「巡邏到遠方目標」為主，偶爾才追小勇者，移動範圍會比原本大很多。
+      let target = g.target;
+      if (Math.random() < 0.22) target = cellOf(state.player);
+
+      possible.sort((a, b) => {
+        const da = Math.abs(target.c - (gc.c + a.x)) + Math.abs(target.r - (gc.r + a.y));
+        const db = Math.abs(target.c - (gc.c + b.x)) + Math.abs(target.r - (gc.r + b.y));
+        return da - db;
+      });
+
+      if (Math.random() < 0.18 && possible.length > 1) {
+        return possible[Math.floor(Math.random() * Math.min(2, possible.length))];
       }
       return possible[0] || { x: 0, y: 0 };
     }
@@ -440,9 +485,20 @@
     function pickQuestion() {
       const allowed = questionBank.map((q, i) => ({ q, i })).filter(item => item.q.level <= state.level).map(item => item.i);
       let available = allowed.filter(i => !state.usedQuestions.has(i));
-      if (!available.length) { allowed.forEach(i => state.usedQuestions.delete(i)); available = [...allowed]; }
-      const chosen = available[Math.floor(Math.random() * available.length)];
+      if (!available.length) {
+        // 同一次挑戰先盡量不重複；真的用完才重新開放。
+        state.usedQuestions.clear();
+        available = [...allowed];
+      }
+
+      const recentSet = new Set(state.recentQuestions || []);
+      const lessRecent = available.filter(i => !recentSet.has(i));
+      const pool = lessRecent.length ? lessRecent : available;
+      const chosen = pool[Math.floor(Math.random() * pool.length)];
       state.usedQuestions.add(chosen);
+
+      state.recentQuestions = [chosen, ...(state.recentQuestions || []).filter(i => i !== chosen)].slice(0, 12);
+      localStorage.setItem("healthMazeRecentQuestions", JSON.stringify(state.recentQuestions));
       return questionBank[chosen];
     }
 
@@ -482,17 +538,44 @@
     }
 
     function relocatePower(power) {
-      const used = state.powers.filter(p => p.active).map(p => `${p.c},${p.r}`);
-      const candidates = openCells().filter(cell => Math.abs(cell.c - cellOf(state.player).c) + Math.abs(cell.r - cellOf(state.player).r) >= 12 && !used.includes(`${cell.c},${cell.r}`));
-      const cell = candidates[Math.floor(Math.random() * candidates.length)] || nearestOpen(19,17);
-      power.c = cell.c; power.r = cell.r; power.active = true;
-      state.dots.delete(`${cell.c},${cell.r}`);
+      const used = state.powers
+        .filter(p => p.active)
+        .map(p => `${p.c},${p.r}`);
+      const playerCell = cellOf(state.player);
+      const corners = [nearestOpen(17, 1), nearestOpen(1, 17), nearestOpen(17, 17), nearestOpen(3, 15), nearestOpen(15, 3)];
+      let candidates = openCells()
+        .filter(cell => Math.abs(cell.c - playerCell.c) + Math.abs(cell.r - playerCell.r) >= 12)
+        .filter(cell => !used.includes(`${cell.c},${cell.r}`));
+
+      if (!candidates.length) {
+        candidates = openCells().filter(cell => !used.includes(`${cell.c},${cell.r}`));
+      }
+
+      let best = candidates[0] || nearestOpen(17, 17);
+      let bestScore = -Infinity;
+      for (const cell of candidates) {
+        const distPlayer = Math.abs(cell.c - playerCell.c) + Math.abs(cell.r - playerCell.r);
+        const distCorner = Math.min(...corners.map(c => Math.abs(c.c - cell.c) + Math.abs(c.r - cell.r)));
+        const distOtherPowers = state.powers
+          .filter(p => p !== power && p.active)
+          .map(p => Math.abs(p.c - cell.c) + Math.abs(p.r - cell.r));
+        const minOther = distOtherPowers.length ? Math.min(...distOtherPowers) : 10;
+        const score = distPlayer * 2 + minOther * 2 - distCorner + Math.random();
+        if (score > bestScore) { bestScore = score; best = cell; }
+      }
+      power.c = best.c;
+      power.r = best.r;
+      power.active = true;
+      power.pulse = Math.random() * 10;
+      state.dots.delete(`${best.c},${best.r}`);
     }
 
     continueBtn.onclick = () => {
       const power = state.currentQuestion.power;
       questionOverlay.classList.add("hidden");
-      if (!state.lastAnswerCorrect) relocatePower(power);
+      if (!state.lastAnswerCorrect) {
+        relocatePower(power);
+      }
       state.currentQuestion = null;
       if (state.powerGot >= levels[state.level - 1].need) {
         if (state.level >= 3) endGame(true);
