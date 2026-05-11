@@ -255,12 +255,11 @@
     const resultText = document.getElementById("resultText");
 
     const levels = [
-      // 三關差異只保留「細菌數量」與「移動速度」：移動範圍與巡邏邏輯三關都一樣大。
-      { label: "簡易", need: 1, ghosts: 2, ghostSpeed: 2.05 },
-      { label: "中等", need: 3, ghosts: 3, ghostSpeed: 2.38 },
-      { label: "困難", need: 5, ghosts: 4, ghostSpeed: 2.7 }
-    ];
-
+  { label: "簡易", need: 1, ghosts: 2, ghostSpeed: 1.8 },
+  { label: "中等", need: 3, ghosts: 3, ghostSpeed: 2.0 },
+  { label: "困難", need: 5, ghosts: 4, ghostSpeed: 2.2 }
+];
+    
     const state = {
       level: 1,
       score: 0,
@@ -372,7 +371,7 @@
 
     function resetLevel() {
       const start = nearestOpen(1, 1);
-      state.player = { x: start.c + 0.5, y: start.r + 0.5, dir: { x: 0, y: 0 }, nextDir: null, speed: 3.6, anim: 0 };
+      state.player = { x: start.c + 0.5, y: start.r + 0.5, dir: { x: 0, y: 0 }, nextDir: null, speed: 3.2, anim: 0 };
       state.powerGot = 0;
       state.ghosts = [];
       const centers = [nearestOpen(9, 9), nearestOpen(11, 9), nearestOpen(9, 11), nearestOpen(11, 11)];
